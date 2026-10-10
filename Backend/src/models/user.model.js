@@ -1,4 +1,4 @@
-import mongoose from 'module' 
+import mongoose from 'mongoose'//'module' 
 
 const userSchema = new mongoose.Schema(
 {
@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema(
     },
     password: {
         type: String,
-        require: true,
-        minilength: 6,
+        required: true,
+        minlength: 6,
     },
     profilePic: {
         type: String,
@@ -28,6 +28,6 @@ const userSchema = new mongoose.Schema(
 }
   
 )
-const User = mongoose.module('User', userSchema)
+const User = mongoose.model('User', userSchema) //.module
 
 export default User; 
