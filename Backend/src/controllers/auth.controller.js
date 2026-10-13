@@ -58,10 +58,10 @@ export const login = async (req,res)=>{
         }
         generateToken(user._id, res);
         res.status(200).json({
-            _id:newUser._id,
-            fullname:newUser.fullname,
-            email:newUser.email,
-            profilePic:newUser.profilePic,
+            _id:user._id,
+            fullname:user.fullname,
+            email:user.email,
+            profilePic:user.profilePic,
 
         })
     } catch (error) {
@@ -96,9 +96,11 @@ export const updateProfile = async(req,res)=>{
   file: profilePic.replace(/^data:image\/\w+;base64,/, ""),
   fileName: `profile-${userId}.jpg`,
 });
-        const updateUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResponse.secure_url},{new:true})
+        const updateUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResponse.url},{new:true})
 
         res.status(200).json(updateUser)
+
+        console.log(uploadResponse)
 
 
 
